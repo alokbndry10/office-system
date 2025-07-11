@@ -11,7 +11,7 @@ echo.
 
 REM Check if XAMPP PHP exists
 if exist "C:\xampp\php\php.exe" (
-    echo [INFO] Using XAMPP PHP
+    echo [INFO] Using XAMPP PHP from C:\xampp\php\php.exe
     echo [INFO] Make sure XAMPP MySQL is running!
     echo.
     echo [SERVER] Starting on http://localhost:8000
@@ -23,12 +23,20 @@ if exist "C:\xampp\php\php.exe" (
     echo.
     C:\xampp\php\php.exe -S localhost:8000 -t html
 ) else (
-    echo [WARNING] XAMPP PHP not found
+    echo [WARNING] XAMPP PHP not found at C:\xampp\php\php.exe
     echo [INFO] Trying system PHP...
     echo.
     php -S localhost:8000 -t html
+    if errorlevel 1 (
+        echo.
+        echo [ERROR] PHP not found! Please install XAMPP or PHP.
+        echo [HELP]  Download XAMPP from: https://www.apachefriends.org/download.html
+        echo.
+        pause
+    )
 )
 
 echo.
+echo ========================================
 echo Server stopped. Press any key to exit...
 pause >nul
