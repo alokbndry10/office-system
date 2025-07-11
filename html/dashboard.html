@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard | Travel Account Management System</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>TAMS</h2>
+                <div class="company-info">
+                    <div class="company-logo" id="company-logo">
+                        <i class='bx bx-buildings'></i>
+                    </div>
+                    <div class="company-details">
+                        <h3 id="company-name">Loading...</h3>
+                        <p id="username">Loading...</p>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a href="#" onclick="showSection('overview')">
+                        <i class='bx bx-dashboard'></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showSection('accounts')">
+                        <i class='bx bx-wallet'></i>
+                        <span>Travel Accounts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showSection('transactions')">
+                        <i class='bx bx-transfer'></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showSection('profile')">
+                        <i class='bx bx-user'></i>
+                        <span>Company Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="logout()">
+                        <i class='bx bx-log-out'></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <h1 id="page-title">Dashboard Overview</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddAccountModal()">
+                        <i class='bx bx-plus'></i>
+                        Add Account
+                    </button>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class='bx bx-wallet'></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-accounts">0</h3>
+                            <p>Travel Accounts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class='bx bx-money'></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-balance">$0.00</h3>
+                            <p>Total Balance</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class='bx bx-transfer'></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-transactions">0</h3>
+                            <p>Total Transactions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class='bx bx-calendar'></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="member-since">N/A</h3>
+                            <p>Member Since</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-transactions">
+                    <h2>Recent Transactions</h2>
+                    <div class="table-container">
+                        <table id="recent-transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" class="no-data">No transactions found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section id="accounts-section" class="content-section">
+                <div class="section-header">
+                    <h2>Travel Accounts</h2>
+                    <button class="btn-primary" onclick="showAddAccountModal()">
+                        <i class='bx bx-plus'></i>
+                        Add New Account
+                    </button>
+                </div>
+                <div id="accounts-grid" class="accounts-grid">
+                    <!-- Accounts will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions-section" class="content-section">
+                <div class="section-header">
+                    <h2>All Transactions</h2>
+                    <div class="filter-controls">
+                        <select id="account-filter">
+                            <option value="">All Accounts</option>
+                        </select>
+                        <select id="type-filter">
+                            <option value="">All Types</option>
+                            <option value="credit">Credit</option>
+                            <option value="debit">Debit</option>
+                        </select>
+                        <button class="btn-secondary" onclick="filterTransactions()">Filter</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="all-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Account</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="no-data">No transactions found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="content-section">
+                <div class="profile-container">
+                    <h2>Company Profile</h2>
+                    <form id="profile-form" class="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="profile-company-name">Company Name</label>
+                                <input type="text" id="profile-company-name" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-vat">VAT Number</label>
+                                <input type="text" id="profile-vat" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Email</label>
+                                <input type="email" id="profile-email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-phone">Phone Number</label>
+                                <input type="tel" id="profile-phone">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="profile-address">Address</label>
+                                <textarea id="profile-address" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="toggleProfileEdit()">Edit Profile</button>
+                            <button type="submit" class="btn-primary" id="save-profile-btn" style="display: none;">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Account Modal -->
+    <div id="add-account-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Travel Account</h3>
+                <span class="close" onclick="closeModal('add-account-modal')">&times;</span>
+            </div>
+            <form id="add-account-form">
+                <div class="form-group">
+                    <label for="new-account-name">Account Name</label>
+                    <input type="text" id="new-account-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-account-type">Account Type</label>
+                    <select id="new-account-type" required>
+                        <option value="business">Business</option>
+                        <option value="personal">Personal</option>
+                        <option value="corporate">Corporate</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="new-account-currency">Currency</label>
+                    <select id="new-account-currency" required>
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="CAD">CAD - Canadian Dollar</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('add-account-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

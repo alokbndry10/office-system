@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- BOXICONS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    <title>Login & Register | Ludiflex</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Travel Account Management System - Login & Register</title>
 </head>
 <body>
     <!-- MAIN HEADER -->
@@ -23,7 +24,14 @@
             </div>
         </div>
         <!-- LOGIN FORM -->
-        <form action="#" class="login-form" autocomplete="off">
+        <form action="#" class="login-form" autocomplete="off" id="login-form">
+            <!-- ERROR MESSAGE CONTAINER -->
+            <div class="error-message" id="login-error" style="display: none;">
+                <i class='bx bx-error-circle'></i>
+                <span class="error-text"></span>
+                <i class='bx bx-x close-btn' onclick="hideLoginError()"></i>
+            </div>
+            
             <div class="input-box">
                 <input type="text" class="input-field" id="log-email" required>
                 <label for="log-email" class="label">Email</label>
@@ -32,6 +40,7 @@
             <div class="input-box">
                 <input type="password" class="input-field" id="log-pass" required>
                 <label for="log-pass" class="label">Password</label>
+                <i class='bx bx-hide password-toggle' data-target="log-pass"></i>
                 <i class='bx bx-lock-alt icon' ></i>
             </div>
             <div class="form-cols">
@@ -41,7 +50,7 @@
                 </div>
             </div>
             <div class="input-box">
-                <button class="btn-submit" id="SignInBtn">Sign In <i class='bx bx-log-in' ></i></button>
+                <button type="submit" class="btn-submit" id="SignInBtn">Sign In <i class='bx bx-log-in' ></i></button>
             </div>
             <div class="switch-form">
                 <span>Don't have an account? <a href="#" onclick="registerFunction()">Register</a></span>
@@ -49,7 +58,14 @@
         </form>
 
         <!-- REGISTER FORM -->
-        <form action="#" class="register-form" autocomplete="off">
+        <form action="#" class="register-form" autocomplete="off" id="register-form">
+            <!-- ERROR MESSAGE CONTAINER -->
+            <div class="error-message" id="register-error" style="display: none;">
+                <i class='bx bx-error-circle'></i>
+                <span class="error-text"></span>
+                <i class='bx bx-x close-btn' onclick="hideRegisterError()"></i>
+            </div>
+            
             <div class="register-grid">
                 <div class="column-left">
                     <div class="input-box">
@@ -67,11 +83,6 @@
                         <label for="address" class="label">Address</label>
                         <i class='bx bx-map icon' ></i>
                     </div>
-                    <div class="input-box">
-                        <input type="text" class="input-field" id="username" required>
-                        <label for="username" class="label">Username</label>
-                        <i class='bx bx-user icon' ></i>
-                    </div>
                 </div>
                 <div class="column-right">
                     <div class="input-box">
@@ -87,11 +98,13 @@
                     <div class="input-box">
                         <input type="password" class="input-field" id="password" required>
                         <label for="password" class="label">Password</label>
+                        <i class='bx bx-hide password-toggle' data-target="password"></i>
                         <i class='bx bx-lock-alt icon' ></i>
                     </div>
                     <div class="input-box">
                         <input type="password" class="input-field" id="confirm-password" required>
                         <label for="confirm-password" class="label">Confirm Password</label>
+                        <i class='bx bx-hide password-toggle' data-target="confirm-password"></i>
                         <i class='bx bx-lock-alt icon' ></i>
                     </div>
                 </div>
@@ -107,13 +120,13 @@
             </div>
             <div class="form-cols">
                 <div class="col-1">
-                    <input type="checkbox" id="agree">
+                    <input type="checkbox" id="agree" required>
                     <label for="agree"> I agree to terms & conditions</label>
                 </div>
                 <div class="col-2"></div>
             </div>
             <div class="input-box">
-                <button class="btn-submit" id="SignUpBtn">Register Company <i class='bx bx-building-house' ></i></button>
+                <button type="submit" class="btn-submit" id="SignUpBtn">Register Company <i class='bx bx-building-house' ></i></button>
             </div>
             <div class="switch-form">
                 <span>Already have an account? <a href="#" onclick="loginFunction()">Sign In Here</a></span>
@@ -121,6 +134,6 @@
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

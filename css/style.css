@@ -10,7 +10,7 @@
     --white-color: #FFF;
     --black-color: #000;
     --input-border-color: #E3E4E6;
-    --transition-3s: 0.3s;
+    --transition-3s: 0.6s;
 }
 
 /* GLOBAL STYLES */
@@ -72,7 +72,7 @@ body{
     padding: 120px 32px 64px;
     border: 1px solid var(--primary-color);
     box-shadow: 0 8px 15px var(--shadow-color);
-    transition: var(--transition-3s);
+    transition: all 0.6s ease-in-out;
     overflow: hidden;
     margin: auto;
     margin-top: 120px;
@@ -128,7 +128,7 @@ body{
     transform: translate(-50%,-50%);
     color: var(--white-color);
     font-size: 24px;
-    transition: var(--transition-3s);
+    transition: all 0.6s ease-in-out;
 }
 .title-register{
     top: 50px;
@@ -140,10 +140,18 @@ body{
     left: 50%;
     transform: translateX(-50%);
     width: 85%;
-    transition: var(--transition-3s);
+    transition: all 0.6s ease-in-out;
+    opacity: 1;
 }
 .register-form{
     left: 150%;
+    opacity: 0;
+}
+
+/* INITIAL TITLE STATES */
+.title-register{
+    top: 50px;
+    opacity: 0;
 }
 
 /* INPUT FIELDS */
@@ -152,6 +160,30 @@ body{
     display: flex;
     flex-direction: column;
     margin: 25px 0;
+}
+
+/* TEXT OVERFLOW HANDLING */
+.input-field {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.input-field:focus {
+    white-space: normal;
+    overflow: visible;
+    height: auto;
+    min-height: 55px;
+    padding: 15px 20px;
+    padding-right: 70px;
+    word-wrap: break-word;
+}
+
+/* REGISTER MODE - BETTER TEXT HANDLING */
+.wrapper.register-mode .input-field:focus {
+    min-height: 65px;
+    padding: 20px 30px;
+    padding-right: 75px;
 }
 
 /* REGISTER MODE - SMALLER GAPS FOR 2-COLUMN */
@@ -165,6 +197,7 @@ body{
     background: transparent;
     color: var(--black-color);
     padding: 0 20px;
+    padding-right: 70px;
     border: 1px solid var(--input-border-color);
     border-radius: 30px;
     outline: none;
@@ -176,9 +209,11 @@ body{
     height: 65px;
     font-size: 18px;
     padding: 0 30px;
+    padding-right: 75px;
 }
 .input-field:focus{
     border: 1px solid var(--primary-color);
+    padding-right: 70px;
 }
 .label{
     position: absolute;
@@ -189,18 +224,29 @@ body{
     transition: 0.2s;
     cursor: text;
     font-size: 16px;
+    max-width: calc(100% - 100px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 .input-field:focus ~ .label,
-.input-field:valid ~ .label{
+.input-field:valid ~ .label {
     top: 0;
     font-size: 15px;
     background-color: var(--white-color);
     color: var(--primary-color);
     padding: 0 10px;
+    max-width: calc(100% - 80px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .input-field:valid ~ .label{
     color: var(--secondary-color);
 }
+/* ICON STYLES */
 .icon{
     position: absolute;
     top: 50%;
@@ -208,7 +254,66 @@ body{
     transform: translateY(-50%);
     font-size: 20px;
     color: var(--secondary-color);
+    padding-left: 15px;
+    border-left: 1px solid var(--input-border-color);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* PASSWORD TOGGLE STYLES */
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: var(--transition-3s);
+    z-index: 15;
+    user-select: none;
+    padding: 8px;
+    padding-left: 15px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--input-border-color);
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+    background-color: rgba(13, 25, 54, 0.1);
+}
+
+.password-toggle.active {
+    color: var(--primary-color);
+}
+
+/* HIDE LOCK ICON IN PASSWORD FIELDS */
+.input-box .password-toggle ~ .icon {
+    display: none;
+}
+
+/* Password toggle responsiveness */
+@media only screen and (max-width: 768px) {
+    .password-toggle {
+        right: 12px;
+        font-size: 16px;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+    
+    .wrapper.register-mode .password-toggle {
+        right: 15px;
+    }
+}
+
 /* FILE UPLOAD STYLES */
 .file-upload {
     position: relative;
@@ -220,6 +325,7 @@ body{
     display: flex;
     align-items: center;
     padding-left: 20px;
+    padding-right: 70px;
     color: var(--secondary-color);
 }
 
@@ -378,6 +484,7 @@ body{
 
 .input-field:focus {
     border: 1px solid var(--primary-color) !important;
+    padding-right: 70px !important;
 }
 
 .input-field.valid {
@@ -388,15 +495,179 @@ body{
     border-color: #dc3545 !important;
 }
 
+/* REGISTER MODE FOCUS PADDING */
+.wrapper.register-mode .input-field:focus {
+    padding-right: 75px !important;
+}
+
 /* FORM MESSAGE STYLES */
 .form-message {
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ERROR MESSAGE STYLES */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #fee;
+    border: 1px solid #dc3545;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #721c24;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(220, 53, 69, 0.25);
+    animation: slideDown 0.3s ease-out;
+    position: relative;
+    border-left: 4px solid #dc3545;
+}
+
+.error-message i {
+    font-size: 20px;
+    color: #dc3545;
+    flex-shrink: 0;
+}
+
+.error-message .error-text {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.error-message .close-btn {
+    font-size: 18px;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    margin-left: 8px;
+}
+
+.error-message .close-btn:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+    transform: scale(1.1);
+}
+
+/* SUCCESS MESSAGE STYLES */
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #155724;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.25);
+    animation: slideDown 0.3s ease-out;
+    position: relative;
+    border-left: 4px solid #28a745;
+}
+
+.success-message i {
+    font-size: 20px;
+    color: #28a745;
+    flex-shrink: 0;
+}
+
+.success-message .close-btn {
+    font-size: 18px;
+    color: #28a745;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    margin-left: 8px;
+}
+
+.success-message .close-btn:hover {
+    background-color: rgba(40, 167, 69, 0.1);
+    transform: scale(1.1);
+}
+
+/* ANIMATION FOR ERROR/SUCCESS MESSAGES */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HIDE ANIMATION */
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.error-message.hiding,
+.success-message.hiding {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+/* REGISTER MODE ERROR MESSAGES */
+.wrapper.register-mode .error-message,
+.wrapper.register-mode .success-message {
+    margin-bottom: 30px;
+    padding: 18px 25px;
+    font-size: 16px;
+}
+
 /* RESPONSIVE STYLES */
 @media only screen and (max-width: 564px){
     .wrapper{
         margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .wrapper.register-mode {
+        width: 95vw;
+        height: auto;
+        min-height: 1000px;
+        padding: 120px 40px 60px;
+    }
+    
+    .register-grid {
+        gap: 30px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .wrapper.register-mode {
+        padding: 120px 30px 50px;
+    }
+    
+    .register-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .wrapper.register-mode .input-field {
+        height: 60px;
+        font-size: 16px;
+        padding: 0 25px;
+        padding-right: 70px;
+    }
+    
+    .wrapper.register-mode .input-field:focus {
+        padding-right: 70px !important;
     }
 }
