@@ -1,0 +1,402 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* COLOR VARIABLES */
+:root {
+    --primary-color: #0D1936;
+    --secondary-color: #535354;
+    --background-color: #EFEFEF;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --white-color: #FFF;
+    --black-color: #000;
+    --input-border-color: #E3E4E6;
+    --transition-3s: 0.3s;
+}
+
+/* GLOBAL STYLES */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* REUSABLE ELEMENTS */
+a{
+    text-decoration: none;
+    color: var(--black-color);
+    transition: var(--transition-3s);
+}
+a:hover{
+    text-decoration: underline;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* MAIN HEADER */
+.main-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    z-index: 1000;
+}
+
+.main-header h1{
+    color: var(--white-color);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* WRAPPER */
+.wrapper{
+    position: relative;
+    width: 430px;
+    height: 500px;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    padding: 120px 32px 64px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 8px 15px var(--shadow-color);
+    transition: var(--transition-3s);
+    overflow: hidden;
+    margin: auto;
+    margin-top: 120px;
+    margin-bottom: 40px;
+}
+
+/* REGISTER MODE - LARGER SIZE */
+.wrapper.register-mode{
+    width: 85vw;
+    max-width: 1200px;
+    height: 1050px;
+    padding: 120px 60px 80px;
+}
+/* FORM HEADER */
+.form-header{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 70px;
+    background-color: var(--primary-color);
+    border-radius: 0 0 20px 20px;
+}
+.form-header::before, .form-header::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+}
+.form-header::before{
+    left: -30px;
+    border-top-right-radius: 50%;
+    box-shadow: 15px 0 0 var(--primary-color);
+}
+.form-header::after{
+    right: -30px;
+    border-top-left-radius: 50%;
+    box-shadow: -15px 0 0 var(--primary-color);
+}
+/* TITLES */
+.titles{
+    position: relative;
+}
+.title-login, .title-register{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--white-color);
+    font-size: 24px;
+    transition: var(--transition-3s);
+}
+.title-register{
+    top: 50px;
+}
+
+/* FORMS */
+.login-form, .register-form{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    transition: var(--transition-3s);
+}
+.register-form{
+    left: 150%;
+}
+
+/* INPUT FIELDS */
+.input-box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 25px 0;
+}
+
+/* REGISTER MODE - SMALLER GAPS FOR 2-COLUMN */
+.wrapper.register-mode .input-box{
+    margin: 20px 0;
+}
+.input-field{
+    width: 100%;
+    height: 55px;
+    font-size: 17px;
+    background: transparent;
+    color: var(--black-color);
+    padding: 0 20px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 30px;
+    outline: none;
+    transition: var(--transition-3s);
+}
+
+/* REGISTER MODE - LARGER INPUT FIELDS */
+.wrapper.register-mode .input-field{
+    height: 65px;
+    font-size: 18px;
+    padding: 0 30px;
+}
+.input-field:focus{
+    border: 1px solid var(--primary-color);
+}
+.label{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--secondary-color);
+    transition: 0.2s;
+    cursor: text;
+    font-size: 16px;
+}
+.input-field:focus ~ .label,
+.input-field:valid ~ .label{
+    top: 0;
+    font-size: 15px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+.input-field:valid ~ .label{
+    color: var(--secondary-color);
+}
+.icon{
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+/* FILE UPLOAD STYLES */
+.file-upload {
+    position: relative;
+}
+
+.file-upload .input-field {
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: var(--secondary-color);
+}
+
+.file-upload .input-field::-webkit-file-upload-button {
+    display: none;
+}
+
+.file-upload .input-field::file-selector-button {
+    display: none;
+}
+
+.file-label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--secondary-color);
+    transition: 0.2s;
+    cursor: pointer;
+    pointer-events: none;
+    font-size: 16px;
+}
+
+.file-upload .input-field:focus ~ .file-label,
+.file-upload .input-field:valid ~ .file-label {
+    top: 0;
+    font-size: 15px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+
+.file-upload .input-field:focus {
+    border: 1px solid var(--primary-color);
+}
+
+/* LOGO PREVIEW STYLES */
+.logo-preview {
+    margin-top: 15px;
+    padding: 20px;
+    border: 2px dashed var(--input-border-color);
+    border-radius: 15px;
+    text-align: center;
+    background-color: #fafafa;
+    transition: var(--transition-3s);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-preview.has-image {
+    border-color: var(--primary-color);
+    background-color: var(--white-color);
+    padding: 25px;
+}
+
+.logo-preview img {
+    max-width: 180px;
+    max-height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.preview-text {
+    color: var(--secondary-color);
+    font-size: 15px;
+    font-style: italic;
+}
+
+/* FORGOT PASSWORD & TERMS AND CONDITIONS */
+.form-cols{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.col-1{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+/* SUBMIT BUTTON */
+.btn-submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition-3s);
+    margin-top: 10px;
+}
+
+/* REGISTER MODE - LARGER BUTTON */
+.wrapper.register-mode .btn-submit{
+    height: 55px;
+    font-size: 17px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.btn-submit:hover{
+    gap: 15px;
+}
+.btn-submit i{
+    font-size: 20px;
+}
+/* SWITCH FORM */
+.switch-form{
+    text-align: center;
+}
+.switch-form a{
+    font-weight: 500;
+}
+
+/* REGISTER MODE - EXTRA MARGIN FOR SWITCH FORM */
+.wrapper.register-mode .switch-form{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* REGISTER GRID LAYOUT */
+.register-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.column-left,
+.column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+/* REGISTER MODE - LARGER GAPS FOR WIDE LAYOUT */
+.wrapper.register-mode .input-box{
+    margin: 25px 0;
+}
+
+/* VALIDATION STYLES */
+.validation-icon, .file-validation-icon {
+    z-index: 10;
+    pointer-events: none;
+}
+
+.input-field:focus {
+    border: 1px solid var(--primary-color) !important;
+}
+
+.input-field.valid {
+    border-color: #28a745 !important;
+}
+
+.input-field.invalid {
+    border-color: #dc3545 !important;
+}
+
+/* FORM MESSAGE STYLES */
+.form-message {
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* RESPONSIVE STYLES */
+@media only screen and (max-width: 564px){
+    .wrapper{
+        margin: 20px;
+    }
+}

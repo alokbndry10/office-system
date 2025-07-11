@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOXICONS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <title>Login & Register | Ludiflex</title>
+</head>
+<body>
+    <!-- MAIN HEADER -->
+    <header class="main-header">
+        <h1>TRAVEL ACCOUNT MANAGEMENT SYSTEM</h1>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-header">
+            <div class="titles">
+                <div class="title-login">Login</div>
+                <div class="title-register">Register</div>
+            </div>
+        </div>
+        <!-- LOGIN FORM -->
+        <form action="#" class="login-form" autocomplete="off">
+            <div class="input-box">
+                <input type="text" class="input-field" id="log-email" required>
+                <label for="log-email" class="label">Email</label>
+                <i class='bx bx-envelope icon'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" id="log-pass" required>
+                <label for="log-pass" class="label">Password</label>
+                <i class='bx bx-lock-alt icon' ></i>
+            </div>
+            <div class="form-cols">
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div class="input-box">
+                <button class="btn-submit" id="SignInBtn">Sign In <i class='bx bx-log-in' ></i></button>
+            </div>
+            <div class="switch-form">
+                <span>Don't have an account? <a href="#" onclick="registerFunction()">Register</a></span>
+            </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form action="#" class="register-form" autocomplete="off">
+            <div class="register-grid">
+                <div class="column-left">
+                    <div class="input-box">
+                        <input type="text" class="input-field" id="company-name" required>
+                        <label for="company-name" class="label">Company Name</label>
+                        <i class='bx bx-buildings icon' ></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" id="vat-number" required>
+                        <label for="vat-number" class="label">VAT Number</label>
+                        <i class='bx bx-receipt icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" id="address" required>
+                        <label for="address" class="label">Address</label>
+                        <i class='bx bx-map icon' ></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" id="username" required>
+                        <label for="username" class="label">Username</label>
+                        <i class='bx bx-user icon' ></i>
+                    </div>
+                </div>
+                <div class="column-right">
+                    <div class="input-box">
+                        <input type="tel" class="input-field" id="phone-number" required>
+                        <label for="phone-number" class="label">Phone Number</label>
+                        <i class='bx bx-phone icon' ></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" class="input-field" id="reg-email" required>
+                        <label for="reg-email" class="label">Email</label>
+                        <i class='bx bx-envelope icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" id="password" required>
+                        <label for="password" class="label">Password</label>
+                        <i class='bx bx-lock-alt icon' ></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" id="confirm-password" required>
+                        <label for="confirm-password" class="label">Confirm Password</label>
+                        <i class='bx bx-lock-alt icon' ></i>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box file-upload">
+                <input type="file" class="input-field" id="logo-upload" accept="image/*" required>
+                <label for="logo-upload" class="file-label">Upload Company Logo</label>
+                <i class='bx bx-upload icon' ></i>
+                <div class="logo-preview" id="logo-preview">
+                    <img id="preview-image" src="" alt="Logo Preview" style="display: none;">
+                    <span class="preview-text">No logo selected</span>
+                </div>
+            </div>
+            <div class="form-cols">
+                <div class="col-1">
+                    <input type="checkbox" id="agree">
+                    <label for="agree"> I agree to terms & conditions</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="input-box">
+                <button class="btn-submit" id="SignUpBtn">Register Company <i class='bx bx-building-house' ></i></button>
+            </div>
+            <div class="switch-form">
+                <span>Already have an account? <a href="#" onclick="loginFunction()">Sign In Here</a></span>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
